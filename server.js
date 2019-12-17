@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-function Book(title = ',', author='', description='', url) {
+function Book(title = ',', author = '', description = '', url) {
   this.title = title;
   this.title = author;
   this.description = description;
@@ -23,9 +23,11 @@ app.get('/', (req, res) => {
 })
 
 app.post('/searches/show', (req, res) => {
-  console.log(req.body);
   superagent.get(`https://www.googleapis.com/books/v1/volumes?q=${req.body.search_criteria}+in${req.body.search_criteria}:${req.body.search}`).then(data => {
-    console.log(data);
+    console.log(data.text.items);
+    for (let index = 0; index < 10; index++) {
+      let topTenSearchResults = new Book(data.text.items[index].volumeInfo.title)
+    }
   })
 })
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
