@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Hello World!</h1>
-    
+
+    <form method="POST">
+        <fieldset>
+            <label>Title
+                <input type="radio" name="search_criteria" value="title">
+            </label>
+            <label>Author
+                <input type="radio" name="search_criteria" value="author">
+            </label>
+
+            <label>
+                <span>Search:</span>
+                <input type="text" name="search">
+            </label>
+
+            <button>Submit</button>
+        </fieldset>
+    </form>
 </body>
+
 </html>
