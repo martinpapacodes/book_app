@@ -6,13 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
 </head>
 
 <body>
-    <h1>Hello World!</h1>
-
-    <form method="POST" action="/searches/show">
+    <div class="topnav">
+        <a href="#home" class="active">Best Books!</a>
+        <div id="myLinks">
+          <a href="#news">News</a>
+          <a href="#contact">Contact</a>
+          <a href="#about">About</a>
+        </div>
+     
+      </div>
+    <h2>Search By Title or Author</h2>
+    <form method="POST" action="searches/show">
         <fieldset>
+            <label>
+                
+                <input placeholder="Enter a title or author" type="text" name="search">
+            </label>
+
             <label>Title
                 <input type="radio" name="search_criteria" value="title">
             </label>
@@ -20,12 +36,8 @@
                 <input type="radio" name="search_criteria" value="author">
             </label>
 
-            <label>
-                <span>Search:</span>
-                <input type="text" name="search">
-            </label>
-
-            <button>Submit</button>
+           
+            <button>Search the Google Books API</button>
         </fieldset>
     </form>
 </body>

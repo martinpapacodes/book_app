@@ -1,3 +1,5 @@
-* {
-    background-color: grey;
-}
+*{
+    box-sizing: border-box;
+    width:100%;
+  }
+
