@@ -28,10 +28,16 @@ app.post('/searches/show', (req, res) => {
       // console.log(data.body.items[index].volumeInfo);
       bookResult.push(new Book(data.body.items[index].volumeInfo.title, data.body.items[index].selfLink));
     }
-    let bookResultObj = bookResult.map(book => ({title: book.title, url: book.url}));
+    let bookResultObj = bookResult.map(book => ({ title: book.title, url: book.url }));
     console.log(bookResultObj);
     res.render('pages/searches/show', {
       books: bookResultObj
+    });
+
+  }).catch(error => {
+    console.log('This is the error:', error);
+    res.render('pages/error', {
+      message: error
     });
   })
 })

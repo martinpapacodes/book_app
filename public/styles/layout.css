@@ -1,0 +1,12 @@
+h1 {
+    float: left;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+div > nav > div{
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+}
