@@ -1,20 +1,24 @@
+'use strict';
+const PORT = process.env.PORT || 3000;
 const express = require('express');
 const superagent = require('superagent');
 const ejs = require('ejs');
-const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-function Book(title = ' ', url = 'google.com') {
-  this.title = title;
-  this.url = url.replace('http://', 'https://');
-
-}
-
+app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
 
-app.set('view engine', 'ejs');
+
+
+function Book(bookData) {
+  this.title = bookData.volumeInfo.title ? bookData.volumeInfo.title : 'No book title';
+  this.image_Url = bookData.volumeInfo.imageLinks.thumbnail ? bookData.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://') : 'views/book-icon--icon-search-engine-6.png';
+  this.author = bookData.volumeInfo.authors ? bookData.volumeInfo.authors : 'No authors';
+  this.description = bookData.volumeInfo.description ? bookData.volumeInfo.description : 'N/A';
+}
+
 
 app.get('/', (req, res) => {
   res.render('pages/index');
@@ -23,15 +27,12 @@ app.get('/', (req, res) => {
 app.post('/searches/show', (req, res) => {
   superagent.get(`https://www.googleapis.com/books/v1/volumes?q=${req.body.search_criteria}+in${req.body.search_criteria}:${req.body.search}`).then(data => {
     let bookResult = [];
-    // console.log(data.body.items[0].selfLink)
     for (let index = 0; index < 10; index++) {
-      // console.log(data.body.items[index].volumeInfo);
-      bookResult.push(new Book(data.body.items[index].volumeInfo.title, data.body.items[index].selfLink));
+      bookResult.push(new Book(data.body.items[index]));
     }
-    let bookResultObj = bookResult.map(book => ({ title: book.title, url: book.url }));
-    console.log(bookResultObj);
+    let bookResultArr = bookResult.map(book => ({ image_url: book.image_Url, title: book.title, author: book.author, description: book.description }));
     res.render('pages/searches/show', {
-      books: bookResultObj
+      bookResultArr
     });
 
   }).catch(error => {

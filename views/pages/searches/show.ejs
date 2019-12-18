@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Result</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Result</title>
 </head>
+
 <body>
-    <ul>
-        <% books.forEach(book => { %>
-          <li>Title: <%= book.title%></li>
-          <li>URL: <%= book.url%></li>
-        <%}) %>
-      </ul>
-    
+  <ul>
+    <% bookResultArr.forEach(book => { %>
+    <img src="<%= book.image_url%>" alt="" />
+    <li>Title: <%= book.title%></li>
+    <li>Authors: <%= book.author%></li>
+    <li><%= book.descriptionr%></li>
+    <%}) %>
+  </ul>
+
 </body>
+
 </html>
