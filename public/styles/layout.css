@@ -1,40 +1,85 @@
-h1 {
-    /* float: left; */
-    font-size: 1.5em;
-    font-weight: bold;
+img {
+  width: 250px;
+  height: 250px;
 }
 
-.mobile-container {
-    max-width: 480px;
-    margin: auto;
-    background-color: #555;
-    height: 500px;
-    color: white;
-    border-radius: 10px;
-  }
-  .topnav {
-    overflow: hidden;
-    background-color: #333;
-    position: relative;
-  }
-  .topnav #myLinks {
-    display: none;
-  }
-  .topnav a {
-    float: left;
-    color: white;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  .topnav a.icon {
-    float: right;
-  }
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  .active {
-    background-color: #4CAF50;
-    color: white;
-  }
+body>div:nth-child(1) {
+  height: 60px;
+  background: black;
+  color: white;
+  width: 100%;
+}
+
+body>div>h1 {
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+  margin: 15px 10px;
+}
+
+body>div>div {
+  float: right;
+  position: relative;
+  width: 10%;
+  overflow: auto;
+}
+
+h2 {
+  text-align: center;
+  background: rgb(83, 83, 83);
+  color: white;
+  height: 50px;
+  line-height: 50px;
+}
+
+body>div:nth-child(2) {
+  height: 100vh;
+  background: rgb(153, 152, 152);
+}
+
+form {
+  width: 60%;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+form>fieldset>input {
+  height: 50px;
+  border-radius: 5px;
+  padding-left: 20px;
+  font-size: 1em;
+}
+
+form>fieldset>label {
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+form>fieldset>label {
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  background: rgb(204, 203, 203);
+}
+
+form>fieldset>label>p {
+  float: left;
+  width: fit-content;
+  margin-left: 10px;
+}
+
+form>fieldset>label>input {
+  float: left;
+  width: fit-content;
+  margin-left: 20px;
+  margin-top: 16px;
+  position: relative;
+}
+
+form>fieldset>button {
+  height: 50px;
+  color: white;
+  background: black;
+  margin-top: 20px;
+  border-radius: 5px;
+}

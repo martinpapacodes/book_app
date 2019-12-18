@@ -27,19 +27,23 @@
       </ul>
     </div>
   </div>
-  <h2>Search By Title or Author</h2>
-  <form method="POST" action="show">
-    <fieldset>
-      <input placeholder="Enter a title or author" type="text" name="search">
-      <label>Title
-        <input type="radio" name="search_criteria" value="title">
-      </label>
-      <label>Author
-        <input type="radio" name="search_criteria" value="author">
-      </label>
-      <button>Search the Google Books API</button>
-    </fieldset>
-  </form>
+  <div>
+    <h2>Search By Title or Author</h2>
+    <form method="POST" action="show">
+      <fieldset>
+        <input placeholder="Enter a title or author" type="text" name="search">
+        <label>
+          <p>Title</p>
+          <input type="radio" name="search_criteria" value="title">
+        </label>
+        <label>
+          <p>Author</p>
+          <input type="radio" name="search_criteria" value="author">
+        </label>
+        <button>Search the Google Books API</button>
+      </fieldset>
+    </form>
+  </div>
 
 </body>
 
