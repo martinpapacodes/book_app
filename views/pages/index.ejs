@@ -27,19 +27,22 @@
             </ul>
         </div>
     </div>
-    <% bookArr.forEach(book => { %>
     <div>
-        <img src="<%= book.image_url %>" alt="" />
-        <h2>Title: <%= book.title %></h2>
-        <h3>Authors: <%= book.author %></h3>
-        <p><%= book.description %></p>
-        <h3>ISBN: <%= book.isbn %></h3>
-        <h3>Bookshelf: <%= book.bookshelf %></h3>
-        <button><a href="/books/<%= book.id %>">View Details</a></button>
+        <% bookArr.forEach(book => { %>
+        <div id="book_results">
+            <img src="<%= book.image_url %>" alt="" />
+            <h3>Title: <%= book.title %></h3>
+            <h3>Authors: <%= book.author %></h3>
+            <p><%= book.description %></p>
+            <h3>ISBN: <%= book.isbn %></h3>
+            <h3>Bookshelf: <%= book.bookshelf %></h3>
+            <button><a href="/books/<%= book.id %>">View Details</a></button>
+        </div>
+        <% }) %>
     </div>
-    <% }) %>
-
     <p>There are a total of <%= totalrow %> books!</p>
+    <footer>
+    </footer>
 </body>
 
 </html>
