@@ -5,19 +5,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Result</title>
+  <title>Books!!</title>
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/modules.css">
+  <link rel="stylesheet" href="/styles/icons.css">
 </head>
 
 <body>
-  <ul>
-    <% bookResultArr.forEach(book => { %>
-    <img src="<%= book.image_url%>" alt="" />
-    <li>Title: <%= book.title%></li>
-    <li>Authors: <%= book.author%></li>
-    <li><%= book.descriptionr%></li>
-    <%}) %>
-  </ul>
-
+  <div class="topnav">
+    <h1>Best Books!</h1>
+    <div id="myLinks">
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/searches/new">Search Book</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <% bookResultArr.forEach(book => { %>
+  <div>
+    <img src="<%= book.image_url %>" alt="" />
+    <h2>Title: <%= book.title %></h2>
+    <h3>Authors: <%= book.author %></h3>
+    <p><%= book.description %></p>
+    <h3>ISBN: <%= book.isbn %></h3>
+    <h3>Bookshelf: <%= book.bookshelf %></h3>
+  </div>
+  <button class="selectBook">Select This Book</button>
+  <form action="/books" method="POST" class="addBookForm" style="display: none;">
+    <input input type="text" name="title" value="<%= book.title %>">
+    <input input type="text" name="author" value="<%= book.author %>">
+    <input input type="text" name="isbn" value="<%= book.isbn %>">
+    <input input type="text" name="image_url" value="<%= book.image_url %>">
+    <textarea name="description"><%= book.description %></textarea>
+    <input input type="text" name="bookshelf" placeholder="Enter bookshelf" required>
+    <input type="submit" value="Add to Database">
+  </form>
+  <% }) %>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="/js/app.js"></script>
 </body>
 
 </html>
