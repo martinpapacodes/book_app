@@ -38,6 +38,11 @@ h2 {
   background: rgb(153, 152, 152);
 }
 
+#form_container {
+  height: 100vh;
+  background: rgb(153, 152, 152);
+}
+
 form {
   width: 60%;
   margin: 0 auto;
