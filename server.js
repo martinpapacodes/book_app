@@ -41,7 +41,7 @@ function showBooksFromDB(request, response) {
   client.query(instruction).then(sqlRes => {
     const bookArr = sqlRes.rows;
     bookArr.length > 0 ? response.render('pages/index', { bookArr: bookArr, totalrow: sqlRes.rowCount }) : response.render('pages/index');
-  })
+  }).catch(e => errorHandler(e, response));
 }
 
 function showGoogleAPIResults(request, response) {
@@ -55,7 +55,7 @@ function showGoogleAPIResults(request, response) {
       bookResultArr
     });
 
-  }).catch(errorHandler)
+  }).catch(e => errorHandler(e, response));
 }
 
 function requestforOneBook(request, response) {
@@ -64,7 +64,7 @@ function requestforOneBook(request, response) {
   client.query(instruction, value).then(sqlRes => {
     const book = sqlRes.rows;
     book.length > 0 ? response.render('pages/books/show', { book: book[0] }) : response.render('pages/books/show');
-  }).catch(errorHandler);
+  }).catch(e => errorHandler(e, response));
 }
 
 function addBookToDB(request, response) {
