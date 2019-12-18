@@ -37,7 +37,7 @@
     <h3>Bookshelf: <%= book.bookshelf %></h3>
   </div>
   <button class="selectBook">Select This Book</button>
-  <form action="/books" method="POST" class="addBookForm" style="display: none;">
+  <form action="/books" method="POST" class="addBookForm">
     <input input type="text" name="title" value="<%= book.title %>">
     <input input type="text" name="author" value="<%= book.author %>">
     <input input type="text" name="isbn" value="<%= book.isbn %>">
