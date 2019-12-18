@@ -1,27 +1,28 @@
-img {
-  width: 250px;
-  height: 250px;
-}
-
-body>div:nth-child(1) {
+.topnav {
   height: 60px;
   background: black;
   color: white;
   width: 100%;
 }
 
-body>div>h1 {
+.topnav>h1 {
   display: inline-block;
   position: relative;
   width: fit-content;
   margin: 15px 10px;
 }
 
-body>div>div {
+#myLinks {
   float: right;
   position: relative;
   width: 10%;
   overflow: auto;
+}
+
+#book_results {
+  margin: 10px auto;
+  width: 60%;
+  max-width: fit-content;
 }
 
 h2 {
