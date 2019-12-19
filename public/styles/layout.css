@@ -59,6 +59,14 @@ form {
   padding-top: 40px;
 }
 
+#deleteForm {
+  width: 100%;
+}
+
+#deleteButton {
+  background: grey;
+}
+
 form>fieldset>input {
   height: 50px;
   border-radius: 5px;
