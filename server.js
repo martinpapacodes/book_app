@@ -6,12 +6,14 @@ const express = require('express');
 const pg = require('pg');
 const ejs = require('ejs');
 const superagent = require('superagent');
+const methodoverride = require('method-override');
 
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodoverride('_method'));
 
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', error => console.error(error));
@@ -33,6 +35,9 @@ app.get('/searches/new', (newReq, newRes) => newRes.render('pages/searches/new')
 app.post('/searches/show', showGoogleAPIResults);
 app.get('/books/:id', requestforOneBook);
 app.post('/books', addBookToDB);
+app.put('/books/:id', updateBook);
+app.delete('/books/:id', deleteBook);
+
 
 //Route Error
 app.get('*', (request, response) => response.status(404).send('This route does not exist'));
@@ -84,6 +89,20 @@ VALUES
   client.query(instruction, values).then(sqlRes => {
     response.redirect(`/books/${sqlRes.rows[0].id}`)
   }).catch(e => errorHandler(e, response));
+}
+
+function updateBook(request, response) {
+  const instruction = `UPDATE books SET author = $1, title = $2, isbn = $3, image_url = $4, description = $5, bookshelf = $6 WHERE id = ${request.body.id}`
+  const values = [request.body.author, request.body.title, request.body.isbn, request.body.image_url, request.body.description, request.body.bookshelf];
+  client.query(instruction, values).then(() => {
+    response.redirect(`/books/${request.body.id}`)
+  });
+}
+
+function deleteBook(request, response) {
+  client.query('DELETE FROM books WHERE id=$1', [request.body.id]).then(() => {
+    response.redirect('/');
+  })
 }
 
 function errorHandler(error, response) {
