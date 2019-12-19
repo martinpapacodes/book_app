@@ -65,13 +65,13 @@ function showGoogleAPIResults(request, response) {
 
 function requestforOneBook(request, response) {
   let bookshelfCatArr = [];
-  const instruction = 'SELECT * FROM books';
+  const instruction = 'SELECT DISTINCT bookshelf FROM books';
   const value = [request.params.id]
   client.query(instruction).then(sqlRes => {
     sqlRes.rows.forEach(data => {
-      if (bookshelfCatArr.indexOf(data.bookshelf) === -1) {
-        bookshelfCatArr.push(data.bookshelf);
-      }
+      // if (bookshelfCatArr.indexOf(data.bookshelf) === -1) {
+      bookshelfCatArr.push(data.bookshelf);
+      // }
     })
     client.query('SELECT * from books WHERE id = $1', value).then(sqlResponse => {
       const book = sqlResponse.rows;
