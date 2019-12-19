@@ -97,17 +97,17 @@ VALUES
 }
 
 function updateBook(request, response) {
-  const instruction = `UPDATE books SET author = $1, title = $2, isbn = $3, image_url = $4, description = $5, bookshelf = $6 WHERE id = ${request.body.id}`
+  const instruction = `UPDATE books SET author = $1, title = $2, isbn = $3, image_url = $4, description = $5, bookshelf = $6 WHERE id = ${request.params.id}`
   const values = [request.body.author, request.body.title, request.body.isbn, request.body.image_url, request.body.description, request.body.bookshelf];
   client.query(instruction, values).then(() => {
-    response.redirect(`/books/${request.body.id}`)
-  });
+    response.redirect(`/books/${request.params.id}`)
+  }).catch(e => errorHandler(e, response));
 }
 
 function deleteBook(request, response) {
-  client.query('DELETE FROM books WHERE id=$1', [request.body.id]).then(() => {
+  client.query('DELETE FROM books WHERE id=$1', [request.params.id]).then(() => {
     response.redirect('/');
-  })
+  }).catch(e => errorHandler(e, response));
 }
 
 function errorHandler(error, response) {
