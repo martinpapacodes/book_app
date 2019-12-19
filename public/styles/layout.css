@@ -24,6 +24,8 @@
   margin: 10px auto;
   width: 60%;
   max-width: fit-content;
+  min-width: 60%;
+  margin-top: 20px;
 }
 
 h2 {
@@ -37,6 +39,7 @@ h2 {
 #book_container {
   height: fit-content;
   background: rgb(153, 152, 152);
+  padding-top: 90px;
 }
 
 #form_container {

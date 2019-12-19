@@ -6,4 +6,28 @@
   <p><%= book.description %></p>
   <h3>ISBN: <%= book.isbn %></h3>
   <h3>Bookshelf: <%= book.bookshelf %></h3>
+
+  <button class="selectBook">Update Details</button>
+  <form action="/books/<%= book.id %>?_method=PUT" method="POST" class="addBookForm">
+    <input type="hidden" name="id" value="<%= book.id %>">
+    <input input type="text" name="title" value="<%= book.title %>">
+    <input input type="text" name="author" value="<%= book.author %>">
+    <input input type="text" name="isbn" value="<%= book.isbn %>">
+    <input input type="text" name="image_url" value="<%= book.image_url %>">
+    <textarea name="description"><%= book.description %></textarea>
+    <select name="bookshelf">
+    <% bookshelf.forEach(category => { %>
+      <option value="<%= category %>"><%= category %></option>
+    <% }) %> 
+    </select>
+    <input type="submit" value="Update Book">
+  </form>
+
+  <form method="POST" action="/books/<%= book.id %>?_method=DELETE">
+    <input type="hidden" name="id" value="<%= book.id %>">
+    <button id="deleteBtn">Delete Book</button>
+  </form>
+
+
 </section>
+
