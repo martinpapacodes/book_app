@@ -44,6 +44,12 @@ h2 {
   background: rgb(153, 152, 152);
 }
 
+#error_container {
+  height: 100vh;
+  background: rgb(153, 152, 152);
+  padding-top: 100px;
+}
+
 form {
   width: 60%;
   margin: 0 auto;

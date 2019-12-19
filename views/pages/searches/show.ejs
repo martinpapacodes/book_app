@@ -1,32 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Books!!</title>
-  <link rel="stylesheet" href="/styles/reset.css">
-  <link rel="stylesheet" href="/styles/base.css">
-  <link rel="stylesheet" href="/styles/layout.css">
-  <link rel="stylesheet" href="/styles/modules.css">
-  <link rel="stylesheet" href="/styles/icons.css">
-</head>
+<%- include('../../layout/header') %>
 
 <body>
-  <div class="topnav">
-    <h1>Best Books!</h1>
-    <div id="myLinks">
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/searches/new">Search Book</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <%- include('../../layout/header') %>
   <% bookResultArr.forEach(book => { %>
   <div>
     <img src="<%= book.image_url %>" alt="" />
@@ -37,7 +14,7 @@
     <h3>Bookshelf: <%= book.bookshelf %></h3>
   </div>
   <button class="selectBook">Select This Book</button>
-  <form action="/books" method="POST" class="addBookForm" style="display: none;">
+  <form action="/books" method="POST" class="addBookForm">
     <input input type="text" name="title" value="<%= book.title %>">
     <input input type="text" name="author" value="<%= book.author %>">
     <input input type="text" name="isbn" value="<%= book.isbn %>">

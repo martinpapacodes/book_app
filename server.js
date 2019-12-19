@@ -1,10 +1,11 @@
 'use strict';
-const PORT = process.env.PORT || 3000;
+
+require('dotenv').config();
+const PORT = process.env.PORT;
 const express = require('express');
 const pg = require('pg');
 const ejs = require('ejs');
 const superagent = require('superagent');
-require('dotenv').config();
 
 const app = express();
 
@@ -45,7 +46,7 @@ function showBooksFromDB(request, response) {
 }
 
 function showGoogleAPIResults(request, response) {
-  superagent.get(`https://www.googleapis.com/books/v1/volumes?q=${request.body.search_criteria}+in${request.body.search_criteria}:${request.body.search}`).then(data => {
+  superagent.get(`https://www.googleapis.com/books/v1/volumes?q=in${request.body.search_criteria}:${request.body.search}`).then(data => {
     let bookResult = [];
     for (let index = 0; index < 10; index++) {
       bookResult.push(new Book(data.body.items[index]));
