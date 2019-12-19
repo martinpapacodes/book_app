@@ -15,8 +15,12 @@
     <input input type="text" name="isbn" value="<%= book.isbn %>">
     <input input type="text" name="image_url" value="<%= book.image_url %>">
     <textarea name="description"><%= book.description %></textarea>
-    <input input type="text" name="bookshelf" placeholder="<%= book.bookshelf %>" required>
-    <input type="submit" value="Add to Database">
+    <select name="bookshelf">
+    <% bookshelf.forEach(category => { %>
+      <option value="<%= category %>"><%= category %></option>
+    <% }) %> 
+    </select>
+    <input type="submit" value="Update Book">
   </form>
 
   <form method="POST" action="/books/<%= book.id %>?_method=DELETE">

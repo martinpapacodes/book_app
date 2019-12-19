@@ -10,8 +10,6 @@ CREATE TABLE IF NOT EXISTS books(
   bookshelf VARCHAR(255)
 );
 
-
-
 INSERT INTO
   books (
     author,

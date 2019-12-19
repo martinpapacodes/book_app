@@ -20,7 +20,6 @@ client.on('error', error => console.error(error));
 client.connect();
 
 
-
 function Book(bookData) {
   this.title = bookData.volumeInfo.title ? bookData.volumeInfo.title : 'No book title';
   this.image_Url = bookData.volumeInfo.imageLinks.thumbnail ? bookData.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://') : 'views/book-icon--icon-search-engine-6.png';
@@ -65,11 +64,19 @@ function showGoogleAPIResults(request, response) {
 }
 
 function requestforOneBook(request, response) {
-  const instruction = 'SELECT * from books WHERE id = $1;';
+  let bookshelfCatArr = [];
+  const instruction = 'SELECT * FROM books';
   const value = [request.params.id]
-  client.query(instruction, value).then(sqlRes => {
-    const book = sqlRes.rows;
-    book.length > 0 ? response.render('pages/books/show', { book: book[0] }) : response.render('pages/books/show');
+  client.query(instruction).then(sqlRes => {
+    sqlRes.rows.forEach(data => {
+      if (bookshelfCatArr.indexOf(data.bookshelf) === -1) {
+        bookshelfCatArr.push(data.bookshelf);
+      }
+    })
+    client.query('SELECT * from books WHERE id = $1', value).then(sqlResponse => {
+      const book = sqlResponse.rows;
+      book.length > 0 ? response.render('pages/books/show', { book: book[0], bookshelf: bookshelfCatArr }) : response.render('pages/books/show');
+    })
   }).catch(e => errorHandler(e, response));
 }
 
