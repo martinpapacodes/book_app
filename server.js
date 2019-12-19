@@ -69,9 +69,7 @@ function requestforOneBook(request, response) {
   const value = [request.params.id]
   client.query(instruction).then(sqlRes => {
     sqlRes.rows.forEach(data => {
-      // if (bookshelfCatArr.indexOf(data.bookshelf) === -1) {
       bookshelfCatArr.push(data.bookshelf);
-      // }
     })
     client.query('SELECT * from books WHERE id = $1', value).then(sqlResponse => {
       const book = sqlResponse.rows;
@@ -119,4 +117,3 @@ function errorHandler(error, response) {
 }
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-
