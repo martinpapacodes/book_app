@@ -22,7 +22,7 @@ client.connect();
 
 function Book(bookData) {
   this.title = bookData.volumeInfo.title ? bookData.volumeInfo.title : 'No book title';
-  this.image_Url = bookData.volumeInfo.imageLinks.thumbnail ? bookData.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://') : 'views/book-icon--icon-search-engine-6.png';
+  this.image_Url = bookData.volumeInfo.imageLinks.thumbnail ? bookData.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://') : 'https://www.freeiconspng.com/uploads/book-icon--icon-search-engine-6.png';
   this.author = bookData.volumeInfo.authors ? bookData.volumeInfo.authors : 'No authors';
   this.isbn = bookData.volumeInfo.industryIdentifiers[0].type + bookData.volumeInfo.industryIdentifiers[0].identifier ? bookData.volumeInfo.industryIdentifiers[0].type + bookData.volumeInfo.industryIdentifiers[0].identifier : 'N/A'
   this.description = bookData.volumeInfo.description ? bookData.volumeInfo.description : 'N/A';
